@@ -19,7 +19,18 @@ This command requests:
 - 64GB of memory (`--mem=64g`)
 - Using the 5sigma(biostat) account (`-A 5sigma`)
 
-### 2. Install Miniconda
+### 2. Load Required Modules
+
+After connecting to the compute node, load the required GCC compiler and CUDA modules:
+
+```bash
+ml load gcc
+ml load cuda
+```
+
+This ensures that the necessary compilers and CUDA libraries are available for running GPU-accelerated code.
+
+### 3. Install Miniconda
 
 If you don't have conda installed, you can install Miniconda:
 
@@ -44,7 +55,7 @@ source ~/.bashrc
 
 For more detailed instructions, visit: [Install Miniconda](https://waylonwalker.com/install-miniconda/)
 
-### 3. Set Up Conda Environment
+### 4. Set Up Conda Environment
 
 Create and activate a new conda environment:
 
@@ -59,7 +70,7 @@ Install the required packages using the vllm_requirements.txt file:
 pip install -r vllm_requirements.txt
 ```
 
-### 4. Configure Hugging Face Cache
+### 5. Configure Hugging Face Cache
 
 To avoid downloading the model each time, set up a persistent cache directory:
 
@@ -78,7 +89,7 @@ Add this to your `.bashrc` to make it permanent:
 echo 'export HF_HOME=/insomnia001/depts/5sigma/users/'$(whoami)'/cache' >> ~/.bashrc
 ```
 
-### 5. Running the Scripts
+### 6. Running the Scripts
 
 The repository contains the following script:
 - `test_mimic.py`: Processes clinical notes and generates analysis using the GENIE model
@@ -89,7 +100,7 @@ To run the analysis:
 python test_mimic.py
 ```
 
-### 6. Handling Long Clinical Notes
+### 7. Handling Long Clinical Notes
 
 If your clinical notes are too long, you can chunk them before processing. It's important to use semantic chunking rather than arbitrary character-based chunking to preserve the meaning and context of the clinical information.
 
