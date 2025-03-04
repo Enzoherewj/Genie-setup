@@ -65,6 +65,7 @@ To avoid downloading the model each time, set up a persistent cache directory:
 
 ```bash
 # Create a personal cache directory
+# The model takes 30 GB. Save it in the departmental scratch space.
 mkdir -p /insomnia001/depts/5sigma/users/$(whoami)/cache
 
 # Set the HF_HOME environment variable
